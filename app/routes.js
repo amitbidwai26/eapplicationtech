@@ -7,6 +7,10 @@ module.exports = function(app, passport) {
         res.render('index.ejs');
     });
 
+     app.get('/about', function(req, res) {
+        res.render('about.ejs');
+    });
+
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
         res.render('profile.ejs', {

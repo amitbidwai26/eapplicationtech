@@ -43,5 +43,11 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 // launch ======================================================================
+
+
+// set static files (css and images, etc) location
+app.use(express.static(__dirname + '/public'));
+
+
 app.listen(port);
 console.log('The magic is live on port ' + port);
