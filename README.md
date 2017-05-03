@@ -1,6 +1,6 @@
-# Easy My Application
+# Easy E Touch Systems
 
-Code for the entire Bidwai Technologies tutorial series: Complete Guide to My Application
+Code for the entire Bidwai Technologies tutorial series: Complete Guide to E Touch Systems
 
 We will be using Passport to authenticate users locally, with Facebook, Twitter, and Google.
 

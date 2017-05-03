@@ -7,9 +7,18 @@ module.exports = function(app, passport) {
         res.render('index.ejs');
     });
 
-     app.get('/about', function(req, res) {
+    app.get('/index', function(req, res) {
+        res.render('contact.ejs');
+    });
+
+    app.get('/about', function(req, res) {
         res.render('about.ejs');
     });
+
+    app.get('/contact', function(req, res) {
+        res.render('contact.ejs');
+    });
+    //Authenticated Route Start
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
@@ -17,6 +26,8 @@ module.exports = function(app, passport) {
             user : req.user
         });
     });
+
+    //Authenticated Route End
 
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {
