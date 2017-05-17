@@ -1,12 +1,17 @@
 // load all the things we need
+
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var JwtStrategy = require('passport-jwt').Strategy;
+var ExtractJwt = require('passport-jwt').ExtractJwt;
 
 // load up the user model
-var User = require('../models/user.js');
+var User = require('../models/user');
 
+// load config file
+var config = require('../config/database');
 // load the auth variables
 var configAuth = require('./auth'); // use this one for testing
 
@@ -29,6 +34,21 @@ module.exports = function(passport) {
             done(err, user);
         });
     });
+    // =========================================================================
+    // JWT Login =============================================================
+    // =========================================================================
+    let opts = {}
+    opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
+    opts.secretOrKey = config.secret;
+    passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
+            User.findById(jwt_payload._id, function(err, user) {
+                done(err, user);
+            });
+        }
+
+    ))
+
+
 
     // =========================================================================
     // LOCAL LOGIN =============================================================
